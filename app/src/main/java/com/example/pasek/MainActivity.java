@@ -1,10 +1,11 @@
 
 package com.example.pasek;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -36,11 +37,13 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_settings) {
-            android.widget.TextView txtMain = findViewById(R.id.txtMain);
+            TextView txtMain = findViewById(R.id.txtMain);
             txtMain.setText("Wybrano ustawienia");
             return true;
+
         } else if (id == R.id.menu_about) {
-            Toast.makeText(this, "O aplikacji", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
             return true;
 
         } else if (id == R.id.menu_exit) {
