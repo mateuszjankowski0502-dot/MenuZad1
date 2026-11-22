@@ -36,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_settings) {
-            Toast.makeText(this, "Ustawienia", Toast.LENGTH_SHORT).show();
+            android.widget.TextView txtMain = findViewById(R.id.txtMain);
+            txtMain.setText("Wybrano ustawienia");
             return true;
-
         } else if (id == R.id.menu_about) {
             Toast.makeText(this, "O aplikacji", Toast.LENGTH_SHORT).show();
             return true;
