@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +25,30 @@ public class MainActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle("Pasek");
         }
+
+        BottomNavigationView bottomNavigation =
+                findViewById(R.id.bottomNavigation);
+
+        View layoutForm = findViewById(R.id.layoutForm);
+        View layoutSettings = findViewById(R.id.layoutSettings);
+
+        bottomNavigation.setOnItemSelectedListener(item -> {
+
+            int id = item.getItemId();
+
+            if (id == R.id.nav_form) {
+                layoutForm.setVisibility(View.VISIBLE);
+                layoutSettings.setVisibility(View.GONE);
+                return true;
+
+            } else if (id == R.id.nav_settings) {
+                layoutForm.setVisibility(View.GONE);
+                layoutSettings.setVisibility(View.VISIBLE);
+                return true;
+            }
+
+            return false;
+        });
     }
 
     @Override
@@ -37,8 +63,9 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.menu_settings) {
-            TextView txtMain = findViewById(R.id.txtMain);
-            txtMain.setText("Wybrano ustawienia");
+            BottomNavigationView bottomNavigation =
+                    findViewById(R.id.bottomNavigation);
+            bottomNavigation.setSelectedItemId(R.id.nav_settings);
             return true;
 
         } else if (id == R.id.menu_about) {
